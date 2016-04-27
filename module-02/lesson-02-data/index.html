@@ -42,7 +42,20 @@
         img {
             margin-left: 25px;
         }
-        /* no css for the Box, or circle elements */
+        #box {
+            width: 200px;
+            height: 200px;
+            background: #3e6b93;
+            margin: 25px;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            background: #bf6864;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 25px;
+        }
     </style>
 </head>
 
@@ -85,6 +98,8 @@
         for(var i=0; i <= elements.length-1;i++){
             elements[i].style['border-radius'] = '20%';
         }
+        
+        // listens for a click event to make the box a rectangle
         box.addEventListener('click', function() {
             this.style.width = '400px';
         });
