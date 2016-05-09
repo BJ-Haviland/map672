@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 04 Starter Template</title>
+    <title>Remote Places to Visit</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -26,6 +26,7 @@
             display: inline-block;
             margin-right: 20px;
             color: #1d486c;
+            text-transform: uppercase;
         }
         h2 {
             display: inline-block;
@@ -51,7 +52,7 @@
 
 <body>
     <header>
-        <h1>REMOTE PLACES TO VIST</h1>
+        <h1>Remote Places to Visit</h1>
         <h2>When You Want to Get Out of Santiago</h2>
     </header>
 
@@ -79,9 +80,11 @@
         map.addLayer(tiles);
         
         // begin writing/editing Lab 04 code here
-      var cities = ["San Juan Bautista", "Santiago", "Porvenir"];
+        var cities = ["San Juan Bautista", "Santiago", "Porvenir"];
         var cityCoords = [
-            [-33.635764, -78.831234],[-33.451030, -70.666297],[-53.295970, -70.366938]
+            [-33.635764, -78.831234],
+            [-33.451030, -70.666297],
+            [-53.295970, -70.366938]
         ];
         var cityPops = [800, 5128000, 5907];
         var cityCapital = [false, true, false];
