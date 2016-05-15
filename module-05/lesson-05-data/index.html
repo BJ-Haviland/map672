@@ -12,7 +12,76 @@
 
 <script>
 /* JavaScript code goes here! */
+ //   function helloMap() {
+ //    console.log("Hello Map");
+ //   }
+ //   helloMap();
+ // helloMap();
+ // helloMap();
+    
+ //   var helloMap = function() {
+ //       console.log("Hello Map");
+ //   };
+ //   helloMap();
+    
+ //   helloMap(); // this will cause an error
+ //   var helloMap = function() {
+ //       console.log("Hello Map");
+ //   };
+    
+ //   function outerFunction(message) {
+ //        console.log(message);
+ //     var innerFunction = function(message) {
+ //         console.log(message);
+ //     };
+ //     innerFunction("I'm Inside!");
+ // };
+ // outerFunction("I'm outside!");
+    
+    function saySomething(message) {
+        // function signature accepts information as a "parameter"
+        console.log(message);
+    }
+    saySomething("Hello Map"); // function is called, passing an "argument" with it
+    saySomething("Please enter the address you'd like to search for.");
+    
+    function saySomething(message) {
+        console.log(message);
+    }
+    var firstMessage = "Hello Map";
+    saySomething(firstMessage);
+    
+    var secondMessage = "Please enter the address you'd like to search for."
+    saySomething(secondMessage);
+    
+    function saySomething(message) {
+        console.log(message);
+    }
+    var message = "Hello Map";
+    saySomething(message);
+    
+    message = "Please enter the address you'd like to search for."
+    saySomething(message);
 
+    function calcAreaRect(width,height){
+        var area = width * height;
+        console.log(area);
+    }
+    
+    // calcAreaRect(40,30);
+    // var width = 40;
+    // var height = 30;
+    
+    var peanutButter = 40;
+    var jelly = 30
+    
+    // calcAreaRect(width, height);
+    calcAreaRect (peanutButter, jelly);
+    
+    
+    
+    
+    
 </script>
     
 </body>
