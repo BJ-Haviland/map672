@@ -108,22 +108,34 @@
     
     function mapCities(units){
         for(var i=0; i< cities.length; i++) {
+            
+            // call to calcPopDensity function and assign return value to density
+            var density = calcPopDensity(cityPops[i],cityAreas[i],units);
            
+            // build the popup with the density value
             var popup = "<b>"+cities[i]+"</b><br>"
-                            +"<b>population</b>: "+cityPops[i].toLocaleString();
-            return density
+                            +"<b>population density</b>: "+density.toLocaleString() +' per square ' + units;
+            
+            // use the coordinates to create the marker and place on map
+            L.marker(cityCoords[i]).addTo(map)
+                .bindPopup(popup);
+            
 
+        } // end for loop
+    } // end mapCities function
+    
+    
+    
+    function calcPopDensity(pop,area,units) {
+        // function tests unit value and calculates the density with
+        // the population and the area
+        
+        if(units == 'miles') {
+            return pop/area;
+        } else if(units == 'km') {
+            return pop/(area*2.58999); // multiply conversion twice to account for sq
+        }
     }
-    // write a function here named mapCities so that it accepts units as a parameter
-    
-    
-    
-    // write a function named calcPopDensity here so that it accepts a single city's
-    // population, area, and the value for units determined by the user
-
-    
-    
-    
     
 
 </script>
