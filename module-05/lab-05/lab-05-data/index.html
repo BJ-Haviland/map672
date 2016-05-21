@@ -15,7 +15,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: #beb68d;
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -81,7 +81,7 @@
     var map = L.map('map', options);
     
     // requests some map tiles
-    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
         subdomains: 'abcd',
         maxZoom: 19
@@ -91,8 +91,13 @@
     map.addLayer(tiles);
     
     var cities = ["Goodnight", "Bowie", "Mesquite"]; // write 3 city names as Strings within an array
-    var cityCoords = [[35.035534,-101.187831],[33.559164,-97.846967],[32.767408,-96.600703]];  // write a two-dimensional array of the coordinates for each city
-    var cityPops = [18,5218,144416];// write the populations of the 3 cities as Numbers within an array;
+    var cityCoords = [
+        [35.035534, -101.187831],
+        [33.559164, -97.846967],
+        [32.767408, -96.600703]
+    ];  // write a two-dimensional array of the coordinates for each city
+    
+    var cityPops = [18,5218,144416];  // write the populations of the 3 cities as Numbers within an array;
     var cityAreas = [3, 5.521,46.18];  // write the areas of the 3 cities as Numbers within an array;
         
     var button = document.getElementById("map-cities");
@@ -107,16 +112,27 @@
     }); // addEventListener callback function ends here
     
     function mapCities(units){
-        for(var i=0; i< cities.length; i++) {
-           
+        
+        for(var i=0; i< cities.length; i++){
+            
+            
             var popup = "<b>"+cities[i]+"</b><br>"
-                            +"<b>population</b>: "+cityPops[i].toLocaleString();
-            return density
-
+                             +"<b>population</b>: "+cityPops[i].toLocaleString();
+        
+            L.marker(cityCoords[i])
+            .addTo(map)
+            .bindPopup(popup);
+        
+        }
     }
+
+    
     // write a function here named mapCities so that it accepts units as a parameter
     
-    
+     function calcPopDensity(cityPops, cityAreas){
+         
+     }
+            
     
     // write a function named calcPopDensity here so that it accepts a single city's
     // population, area, and the value for units determined by the user
