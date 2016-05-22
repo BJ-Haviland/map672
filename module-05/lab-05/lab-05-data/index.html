@@ -103,9 +103,11 @@
     var button = document.getElementById("map-cities");
     
     button.addEventListener("click", function() {
-         
-        var units = prompt('Enter the units for calculating density', 'Enter "miles" or "km"');
         
+        do { 
+        var units = prompt('Enter the units for calculating density', 'Enter "mi" or "km"');
+        } while (units != "mi" && units != "km")
+            
         mapCities(units);   
         // call a function named mapCities, and send the units variable as an argument
         
@@ -115,9 +117,10 @@
         
         for(var i=0; i< cities.length; i++){
             
+            var density = calcPopDensity(cityPops[i], cityAreas[i], units);            
             
             var popup = "<b>"+cities[i]+"</b><br>"
-                             +"<b>population</b>: "+cityPops[i].toLocaleString();
+                             +"<b>Density</b>: "+ density.toLocaleString() +" people per square "+ units;
         
             L.marker(cityCoords[i])
             .addTo(map)
@@ -129,16 +132,20 @@
     
     // write a function here named mapCities so that it accepts units as a parameter
     
-     function calcPopDensity(cityPops, cityAreas){
-         
+     function calcPopDensity(pop, area, units){
+         if (units == "mi"){
+            var density = pop/area;
+         }
+         else if (units == "km"){
+             var density = pop/(area *2.5899);
+         }
+         return density;
      }
             
     
     // write a function named calcPopDensity here so that it accepts a single city's
     // population, area, and the value for units determined by the user
 
-    
-    
     
     
 
