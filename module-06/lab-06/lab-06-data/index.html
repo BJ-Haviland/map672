@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 06 Starter Template</title>
+    <title>Gastronomic Highlights of the Week</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -53,14 +53,16 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Highlighting the week in Gastronomics</h1>
+    </header>
+    <header>
+        <h2>WY-CO-CA</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
+        <p>Map authored by Bryan J. Haviland</p>
         <p>Additional information about the data and map goes here.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
         </p>
@@ -83,15 +85,48 @@
         
         var cities = [
              {
-                 name: "Louisville",
+                 name: "Laramie",
                  properties: {
-                     coordinates: [38.25, -85.7667],
-                     population: 756832,
-                     state: "KY"
+                     coordinates: [41.311579, -105.596009],
+                     population: 31681,
+                     state: "WY"
+                 }
+             },
+             
+             {   name: "Golden",
+                 properties: {
+                     coordinates: [39.754397, -105.220480],
+                     population: 18867,
+                     state: "CO",
+                 }
+             },
+             
+             {   name: "Berkeley",
+                 properties: {
+                     coordinates: [37.867066, -122.258683],
+                     population: 118853,
+                     state: "CA"
                  }
              }    
-        ];
+        ];  // define the cities data within an object and store all within an array
+        
+         for(var i=0; i< cities.length; i++){
+             
+         }
             
+            console.log(cities[i]);            
+                    
+        
+ // loop through each city and
+        
+        
+ // create a variable to access each city's properties
+        
+ // create a variable to store the popup content for each city
+ // retrieve this content with a call to a function that will
+ // assign a CSS class name to a variable used to color the text
+ // return a string concatenating the name and population of each city within HTML // assign the return value of the function to the popup variable
+ // create a Leaflet marker with the city's coordinates and bind the popup     
         
           
     </script>
