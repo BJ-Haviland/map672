@@ -69,8 +69,9 @@
 
     <footer>
         <p>Map authored by Bryan J. Haviland</p>
-        <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
+        <p>Location coordinates were derived from the authors photos.
+        Population data was source from Wikipedia. </p>
+        <p>The map indicates cities, and associated dining establishments visited while the author was on work travel.
         </p>
     </footer>
 
@@ -121,11 +122,11 @@
             //console.log(cities[i].properties);    // loop through each city and
             //console.log(cities[i].properties.coordinates[1]); // loop through each city and log only Longitude.
              
-             var popup = " i'm a temp string";  // create a variable to store the popup content for each city
+             var popup = buildPopup(cities[i].name, props.population, props.state);  // create a variable to store the popup content for each city
              
              L.marker(props.coordinates).addTo(map).bindPopup(popup);   // create a Leaflet marker with the city's coordinates and bind the popup 
              
-             // console.log(props)
+              console.log(props)
          }
 // retrieve this content with a call to a function that will
 // assign a CSS class name to a variable used to color the text
