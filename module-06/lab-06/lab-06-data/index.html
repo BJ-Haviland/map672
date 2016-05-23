@@ -111,14 +111,16 @@
         ];  // define the cities data within an object and store all within an array
         
          for(var i=0; i< cities.length; i++){
-             var props = cities[i].properties;
+             var props = cities[i].properties;   // create a variable to access each city's properties
             //console.log(cities[i].properties);    // loop through each city and
             //console.log(cities[i].properties.coordinates[1]); // loop through each city and log only Longitude.
+             var popup = "I am just temp filler string text";
+             L.marker(props.coordinates).addTo(map).bindPopup(popup);
              console.log(props)
          }
             
     
- // create a variable to access each city's properties
+ 
         
  // create a variable to store the popup content for each city
  // retrieve this content with a call to a function that will
