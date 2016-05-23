@@ -83,7 +83,7 @@
     <script>
 
         var map = L.map('map', {
-            center: [37.015,-113.838],
+            center: [42.3170,-111.0210],
             zoom: 5,
         });
        
@@ -152,7 +152,7 @@
         else if (state == "CA"){
             var colorClass = "CA-blue";
         }
-        return "<br><img class='pic' src='"+ pic +"'>" +
+        return "<img class='pic' src='"+ pic +"'><br>" +
         "<div class='"+colorClass+"'><b>"+name+"</b><br>"+"<b>Population</b>: "+pop.toLocaleString()+"<br><b>Restaurant</b>: "+restaurant+"</b><br><div>";  
         // return a string concatenating the name and population of each city within HTML 
         // assign the return value of the function to the popup variable
