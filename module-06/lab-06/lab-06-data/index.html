@@ -15,7 +15,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: #d6ba6d;
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -53,7 +53,7 @@
 
 <body>
     <header>
-        <h1>Highlighting the week in Gastronomics</h1>
+        <h1>A Week of Travel Highlighted via Gastronomics</h1>
     </header>
     <header>
         <h2>WY-CO-CA</h2>
@@ -71,8 +71,8 @@
     <script>
 
         var map = L.map('map', {
-            center: [38.96,-85.36],
-            zoom: 8,
+            center: [37.015,-113.838],
+            zoom: 5,
         });
        
         var tiles = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
@@ -111,15 +111,13 @@
         ];  // define the cities data within an object and store all within an array
         
          for(var i=0; i< cities.length; i++){
-             
+             var props = cities[i].properties;
+            //console.log(cities[i].properties);    // loop through each city and
+            //console.log(cities[i].properties.coordinates[1]); // loop through each city and log only Longitude.
+             console.log(props)
          }
             
-            console.log(cities[i]);            
-                    
-        
- // loop through each city and
-        
-        
+    
  // create a variable to access each city's properties
         
  // create a variable to store the popup content for each city
