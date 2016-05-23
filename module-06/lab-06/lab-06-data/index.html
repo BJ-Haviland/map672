@@ -44,8 +44,14 @@
             font-size: 1em;
             color: #001323;
         }
-        .kentucky-blue {
-            color: #165bb6;
+        .WY-snow-purple {
+            color: #9116b6;
+        }
+        .CO-red-rock {
+            color: #c9380c;
+        }
+        .CA-blue {
+            color: #345989;
         }
         
     </style>
@@ -114,20 +120,38 @@
              var props = cities[i].properties;   // create a variable to access each city's properties
             //console.log(cities[i].properties);    // loop through each city and
             //console.log(cities[i].properties.coordinates[1]); // loop through each city and log only Longitude.
-             var popup = "I am just temp filler string text";
-             L.marker(props.coordinates).addTo(map).bindPopup(popup);
-             console.log(props)
+             
+             var popup = " i'm a temp string";  // create a variable to store the popup content for each city
+             
+             L.marker(props.coordinates).addTo(map).bindPopup(popup);   // create a Leaflet marker with the city's coordinates and bind the popup 
+             
+             // console.log(props)
          }
-            
-    
+// retrieve this content with a call to a function that will
+// assign a CSS class name to a variable used to color the text
+        
+    function buildPopup(name, pop, state){
+        if (state == "WY"){
+            var colorClass = "WY-snow-purple";
+        }
+        else if (state == "CO"){
+            var colorClass = "CO-red-rock";
+        }
+        else if (state == "CA"){
+            var colorClass = "CA-blue";
+        }
+        return "<div class='"+colorClass+"'><b>"+name+"</b><br>"+"<b>Population</b>: "+pop.toLocaleString()+"<div>";  
+        // return a string concatenating the name and population of each city within HTML 
+        // assign the return value of the function to the popup variable
+        
+        console.log(buildPopup)
+    }
  
         
- // create a variable to store the popup content for each city
- // retrieve this content with a call to a function that will
- // assign a CSS class name to a variable used to color the text
- // return a string concatenating the name and population of each city within HTML // assign the return value of the function to the popup variable
- // create a Leaflet marker with the city's coordinates and bind the popup     
-        
+ 
+ 
+ 
+
           
     </script>
     
