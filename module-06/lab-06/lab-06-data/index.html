@@ -45,8 +45,8 @@
             color: #001323;
         }
         pic {
-            width: 200px;
-            height:auto;
+            width: 100px;
+            height:inherit;
         }
         .WY-snow-purple {
             color: #9116b6;
@@ -113,7 +113,7 @@
                      population: 18867,
                      state: "CO",
                      restaurant: "Woody's Pizza",
-                     pic:"CO_20160519_141650.jpg"
+                     pic:"woodys.jpg"
                  }
              },
              
@@ -123,7 +123,7 @@
                      population: 118853,
                      state: "CA",
                      restaurant: "CREAM Inc.",
-                     pic:"cream.jpg"
+                     pic:"cream_2.jpg"
                  }
              }    
         ];  // define the cities data within an object and store all within an array
@@ -152,7 +152,8 @@
         else if (state == "CA"){
             var colorClass = "CA-blue";
         }
-        return "<div class='"+colorClass+"'><b>"+name+"</b><br>"+"<b>Population</b>: "+pop.toLocaleString()+"<br><b>"+restaurant+"</b><br>"+"<img class="pic" src='"+ pic +"'>""<div>";  
+        return "<br><img class='pic' src='"+ pic +"'>" +
+        "<div class='"+colorClass+"'><b>"+name+"</b><br>"+"<b>Population</b>: "+pop.toLocaleString()+"<br><b>Restaurant</b>: "+restaurant+"</b><br><div>";  
         // return a string concatenating the name and population of each city within HTML 
         // assign the return value of the function to the popup variable
         
