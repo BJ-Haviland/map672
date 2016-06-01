@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 07 Starter Template</title>
+    <title>Never Stray from the Red Iguana</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -15,9 +15,9 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: #11140b;
             font-family: Lato, sans-serif;
-            color: #0D0000;
+            color: #b21010;
         }
         header {
             padding: 6px 10%;
@@ -25,11 +25,11 @@
         h1 {
             display: inline-block;
             margin-right: 20px;
-            color: #001323;
+            color: #ffffff;
         }
         h2 {
             display: inline-block;
-            color: #001323;
+            color: #ffffff;
         }
         #map {
             width: 80%;
@@ -52,16 +52,20 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>You Can't Outrun the Red Iguana </h1>
+        <h2>...the Iguana Is How Far Away?</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
-        <p>Additional information about the data and map goes here.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis urna magna, maximus nec laoreet sit amet, dictum ultricies nibh. Ut id auctor lacus. Nam a dolor et justo luctus luctus. Duis a elit eget risus dictum vehicula id eu elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed sed enim nisl. Vestibulum commodo imperdiet lacus, sed facilisis erat placerat sit amet. Nulla consequat malesuada neque eget aliquet. Integer non convallis nisl, gravida ultrices ex. Fusce nec vestibulum elit. Sed elementum lectus ipsum, vulputate elementum ex laoreet a. Aenean eu ex varius, varius felis vitae, efficitur nulla. Quisque pretium laoreet ante, in sodales dui vehicula at. Mauris eu sem sapien.
+        <p>Map authored by Bryan J. Haviland</p>
+        <p>Information fron Google Reviews:</p>
+        <p>Buzzy, family-run Mexican cafe specializing in mole & also serving traditional & gluten-free fare.
+Address: 736 W North Temple, Salt Lake City, UT 84116
+Phone:(801) 322-1489
+Hours: Closing soon · 11AM–10PM
+Menu: rediguana.com
         </p>
     </footer>
 
@@ -73,6 +77,16 @@
     }
     
     var map = L.map('map', options);
+        
+       var HikeBike_HikeBike = L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
+	   maxZoom: 19,
+	   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+       });
+
+        
+        map.addLayer(HikeBike_HikeBike);
+
+
                 
     var redIguana = L.latLng(40.7718,-111.9124);
         
@@ -83,13 +97,35 @@
         })
     }).addTo(map);
         
-    map.on('click', function(e){
-        
+   map.on('click', function(e){
+       var randomLoc = (e.latlng);
         // output is o.LatLng {lat: 40.863679665481676, lng: -114.57847595214842}  
-        console.log(e.latlng); 
+    
+    var marker2 =   
+    L.marker(randomLoc, {
+        draggable: true,
+        opacity: .8            
+    }).addTo(map).update();
+       
+    // map.on('dragend', function(e) {
+    //     marker2.update(e.target.getLatLng());
+    // });
+    
+    var dist_km = L.latLng(redIguana).distanceTo(randomLoc)/1000;
+       
+    marker2.bindPopup(dist_km.toLocaleString() +" km to the Red Iguana" );
+       
+    console.log(randomLoc);
+    console.log(dist_km);
+            
+  });
+
         
-    });
-                  
+   
+L.control.scale().addTo(map);
+        
+   
+        
     </script>
     
 </body>
