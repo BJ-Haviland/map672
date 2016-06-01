@@ -110,10 +110,10 @@ Menu: rediguana.com
         }).addTo(map);
        
         marker2.on('dragend', function(e) {
-            marker2 = (marker2.getLatLng());
+            console.log(marker2.getLatLng());
         });
     
-    var dist_km = L.latLng(redIguana).distanceTo(randomLoc)/1000;
+    var dist_km = L.latLng(redIguana).distanceTo(marker2)/1000;
        
     marker2.setPopupContent(dist_km.toLocaleString() +" km to the Red Iguana" );
     
