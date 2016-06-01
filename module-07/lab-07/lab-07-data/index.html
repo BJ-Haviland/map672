@@ -98,28 +98,33 @@ Menu: rediguana.com
     }).addTo(map);
         
    map.on('click', function(e){
-       var randomLoc = (e.latlng);
-        // output is o.LatLng {lat: 40.863679665481676, lng: -114.57847595214842}  
+        var randomLoc = (e.latlng);
+  // });
+        // output is o.LatLng {lat: 40.863679665481676, lng: -114.57847595214842}
+           
     
-    var marker2 =   
-    L.marker(randomLoc, {
-        draggable: true,
-        opacity: .8            
-    }).addTo(map).update();
+        var marker2 =   
+        L.marker(randomLoc, {
+            draggable: true,
+            opacity: .8            
+        }).addTo(map);
        
-    // map.on('dragend', function(e) {
-    //     marker2.update(e.target.getLatLng());
-    // });
+        marker2.on('dragend', function(e) {
+            marker2 = (marker2.getLatLng());
+        });
     
     var dist_km = L.latLng(redIguana).distanceTo(randomLoc)/1000;
        
-    marker2.bindPopup(dist_km.toLocaleString() +" km to the Red Iguana" );
+    marker2.setPopupContent(dist_km.toLocaleString() +" km to the Red Iguana" );
+    
        
     console.log(randomLoc);
+    //console.log(newLoc);
     console.log(dist_km);
+       
+   });
             
-  });
-
+  
         
    
 L.control.scale().addTo(map);
