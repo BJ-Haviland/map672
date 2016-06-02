@@ -78,16 +78,14 @@ Menu: rediguana.com
     
     var map = L.map('map', options);
         
-       var HikeBike_HikeBike = L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
+    var HikeBike_HikeBike = L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
 	   maxZoom: 19,
 	   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
        });
 
         
-        map.addLayer(HikeBike_HikeBike);
-
-
-                
+    map.addLayer(HikeBike_HikeBike);
+           
     var redIguana = L.latLng(40.7718,-111.9124);
         
     L.marker(redIguana, {
@@ -97,25 +95,32 @@ Menu: rediguana.com
         })
     }).addTo(map);
         
+        
+        
    map.on('click', function(e){
-        var randomLoc = (e.latlng);
-  // });
-        // output is o.LatLng {lat: 40.863679665481676, lng: -114.57847595214842}
-           
+        var randomLoc = e.latlng; // don't need parentheses
+       
+       var dist_km = redIguana.distanceTo(randomLoc)/1000;
     
-        var marker2 =   
-        L.marker(randomLoc, {
+        var marker2 = L.marker(randomLoc, {
             draggable: true,
             opacity: .8            
         }).addTo(map);
        
+        marker2.bindPopup(dist_km.toLocaleString() +" km to the Red Iguana").openPopup()
+       
         marker2.on('dragend', function(e) {
-            console.log(marker2.getLatLng());
+            
+             /re-calculate distance using new location
+             dist_km = (redIguana.distanceTo(e.target.getLatLng()))/1000;
+             
+             // update the popup content and open it
+             marker2.setPopupContent(dist_km.toLocaleString() +" km to the Red Iguana").openPopup();
         });
     
-    var dist_km = L.latLng(redIguana).distanceTo(marker2)/1000;
+    
        
-    marker2.setPopupContent(dist_km.toLocaleString() +" km to the Red Iguana" );
+   
     
        
     console.log(randomLoc);
