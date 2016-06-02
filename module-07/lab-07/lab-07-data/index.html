@@ -107,6 +107,7 @@ Menu: rediguana.com
             opacity: .8            
         }).addTo(map);
        
+        // bind the initial popup with the distance and open it       
         marker2.bindPopup(dist_km.toLocaleString() +" km to the Red Iguana").openPopup()
        
         marker2.on('dragend', function(e) {
