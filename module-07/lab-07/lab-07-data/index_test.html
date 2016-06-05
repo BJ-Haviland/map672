@@ -99,34 +99,17 @@ Menu: rediguana.com
         })
     }).addTo(map);
         
-    map.on('click', function(e){
-        var randomLoc = (e.latlng);
-  
-        // output is o.LatLng {lat: 40.863679665481676, lng: -114.57847595214842}
-           
-    
-        var marker2 =   
-        L.marker(randomLoc, {
-            draggable: true,
-            opacity: .8            
-        }).addTo(map);
-       
-        marker2.on('dragend', function(e) {
-            console.log(marker2.getLatLng());
-        }).bindPopup(popup).openPopup();
-    
-    var dist_km = L.latLng(redIguana).distanceTo(marker2)/1000;
-    var popup = (dist_km.toLocaleString() +" km to the Red Iguana" );
-       
-    //marker2.setPopupContent();
-    
-    
-       
-    console.log(randomLoc);  // TESTS       
-    console.log(dist_km);
-       
-   });
-            
+        
+    var randomLoc = L.latLng(map.on('click', function(e){
+        randomLoc =(e.latlng)
+    });
+        
+    L.marker(randomLoc, {
+        
+    }).addTo(map));
+        
+        
+   
   
         
    
