@@ -109,7 +109,7 @@
                       fillColor: '#5a5afa'
                   });
               });
-              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ feature.properties.capacity_mw /1000 +'GW <br> Pump Storage: '+ feature.properties[1].fuel_source["Pumped Storage"]);
+              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ feature.properties.capacity_mw /1000 +'GW <br> Pump Storage: '+ feature.properties.fuel_source["Pumped Storage"]);
           }          
                    
       }).addTo(map)
