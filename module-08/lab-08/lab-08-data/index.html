@@ -15,7 +15,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: #ced5e8;
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -49,15 +49,15 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Gigawatt Level Hydroelectric Production of the U.S.</h1>
+        <h2></h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
         <p>Map authored by Bryan J. Haviland</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Source Data: U.S. Energy Information Administration - http://www.eia.gov/electricity/data/eia923/</p>
     </footer>
 
     <script src="power-plants.js"></script>
@@ -95,7 +95,7 @@
               if(feature.properties.capacity_mw > 1000 && feature.properties.capacity_mw < 10000 && feature.properties.fuel_source.Hydro){
                   return feature;
               }
-          },    // to filter layer data via capacity, fuel criteria
+          },    // to filter layer data via capacity, fuel criteria (for the current map, the upper limit is not in play)
           
           onEachFeature : function(feature,layer){
               layer.on('mouseover', function() {
@@ -109,7 +109,7 @@
                       fillColor: '#5a5afa'
                   });
               });
-              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ feature.properties.capacity_mw /1000 +'GW');
+              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ feature.properties.capacity_mw /1000 +'GW <br> Pump Storage: '+ feature.properties[1].fuel_source["Pumped Storage"]);
           }          
                    
       }).addTo(map)
