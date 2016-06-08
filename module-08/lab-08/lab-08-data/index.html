@@ -76,8 +76,15 @@
       
       tiles.addTo(map);
         
-        plants.features.sort(function(a, b) {
-            return b.properties.capacity_mw - a.properties.capacity_mw;
+    var pumpedSto = plants.feature.properties.fuel_source ["Pumped Storage"] += 0
+    //if ([plants][feature][properties][fuel_source]["Pumped Storage"] >0){
+    //     pumpedSto = plants.feature.properties.fuel_source ["Pumped Storage"]}
+    //        else {pumpedSto += 0
+    //             };
+          
+    
+    plants.features.sort(function(a, b) {
+        return b.properties.capacity_mw - a.properties.capacity_mw;
         });
       
       L.geoJson(plants, {           // source data: power plants
@@ -90,7 +97,6 @@
                  radius: getRadius(feature.properties.capacity_mw)
               });   
           },
-          
           filter: function(feature, layer) {
               if(feature.properties.capacity_mw > 1000 && feature.properties.capacity_mw < 10000 && feature.properties.fuel_source.Hydro){
                   return feature;
@@ -108,17 +114,17 @@
                   layer.setStyle({
                       fillColor: '#5a5afa'
                   });
-              });
-              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ (feature.properties.capacity_mw /1000).toLocaleString() +'GW <br> Pump Storage: '+ feature.properties.fuel_source["Pumped Storage"] +'GW <br> Hydro: '+ (feature.properties.fuel_source.Hydro /1000).toLocaleString() +'GW');
-          }      //  popup works w exception of when there is a value of zero in the Pumped Storage property.    
-                   
+              });              
+              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ (feature.properties.capacity_mw /1000).toLocaleString() +'GW <br> Pumped Storage: '+ pumpedSto +'GW <br> Hydro: '+ (feature.properties.fuel_source.Hydro /1000).toLocaleString() +'GW');
+          }      //  popup works w exception of when there is a null, or value of zero in the Pumped Storage property.  (add if / else to fix)
+                    
       }).addTo(map)
         
     function getRadius(area) {
         var radius = Math.sqrt(area/Math.PI);
         return radius * .6;  
     }   // function to calc radii
-    
+        
     console.log(plants)  // to see structure
                   
     </script>
