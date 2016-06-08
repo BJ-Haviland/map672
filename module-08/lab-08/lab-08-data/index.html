@@ -109,8 +109,8 @@
                       fillColor: '#5a5afa'
                   });
               });
-              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ (feature.properties.capacity_mw /1000).toLocaleString() +'GW <br> Pump Storage: '+ feature.properties.fuel_source["Pumped Storage"]);
-          }          
+              layer.bindPopup('<b>'+ feature.properties.plant_name +'</b><br>Capacity: '+ (feature.properties.capacity_mw /1000).toLocaleString() +'GW <br> Pump Storage: '+ feature.properties.fuel_source["Pumped Storage"] +'GW <br> Hydro: '+ (feature.properties.fuel_source.Hydro /1000).toLocaleString() +'GW');
+          }      //  popup works w exception of when there is a value of zero in the Pumped Storage property.    
                    
       }).addTo(map)
         
