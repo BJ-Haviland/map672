@@ -15,7 +15,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: whitesmoke;
+            background: #d6c4b4;
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -49,14 +49,14 @@
 
 <body>
     <header>
-        <h1>Map Title</h1>
-        <h2>Map Subtitle</h2>
+        <h1>Generation Variety:</h1>
+        <h2>How Robust is Power Generation Regionally?</h2>
     </header>
 
     <div id='map'></div>
 
     <footer>
-        <p>Map authored by YOUR NAME</p>
+        <p>Map authored by Bryan J. Haviland</p>
         <p>Additional information about the data and map goes here.</p>
     </footer>
 
@@ -67,6 +67,67 @@
           center: [36,-94],
           zoom: 4,
       });
+        
+             
+        var commonStyles = {
+                weight: 1,
+                stroke: 1,
+                fillOpacity: .8
+        }
+        
+        var layerInfo = {
+            hydroLayer: {source:"Hydro", color:'#c7e0fc'}, 
+            petroleumLayer: {source:"Petroleum", color:'#efce60'},
+            nuclearLayer: {source:"Nuclear", color:'#8cff37'},
+            natGasLayer: {source:"Natural Gas", color:'#f5ff00'}
+        };
+
+        var geoJsonLayers = {};
+
+        for(var layer in layerInfo) {     
+            geoJsonLayers[layer] = L.geoJson(plants, {
+                pointToLayer: function(feature,latlng) {
+                    return L.circleMarker(latlng, commonStyles);
+                },
+                filter: function(feature) {
+                    if(feature.properties.fuel_source[layerInfo[layer].source]) {
+                        return feature;
+                    }
+                },
+                style: function(feature) {
+                    return {
+                        color: layerInfo[layer].color,
+                        fillColor: layerInfo[layer].color,
+                        radius: getRadius(feature.properties.fuel_source[layerInfo[layer].source])
+                    } 
+                } 
+            }).addTo(map);        
+            }
+        
+              
+        map.on('click', function(e) {
+            for(var layer in layerInfo) {            
+                geoJsonLayers[layer].eachLayer(function(layer) {
+                    var distance = e.latlng.distanceTo(layer.getLatLng())/1000;
+
+                    if(distance > 500) {
+                        layer.setStyle({
+                            stroke: false,
+                            fill: false
+                        });  
+                    } else {
+                        layer.setStyle({
+                            stroke: true,
+                            fill: true  
+                        });  
+                        var content = "<b>"layer.feature.properties.plant_name+"</b><br>"+layer.feature.properties.fuel_source + "<br>";
+                            content += "<b>"+distance.toLocaleString()+"</b>"
+                        layer.bindPopup(content);
+                    } 
+                });
+            }
+        });  
+  
       
       var tiles = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -75,7 +136,24 @@
       });  
       
       tiles.addTo(map);
-                  
+        
+            
+    
+       function getRadius(val) {
+            var radius = Math.sqrt(val/Math.PI);
+            return radius * .8;   
+        }
+
+        var sourcesLabels = {
+            "<b style='color:#c7e0fc'>Hydro</b>": geoJsonLayers.hydroLayer,
+            "<b style='color:#efce60'>Petroleum</b>": geoJsonLayers.petroleumLayer,
+            "<b style='color:#8cff37'>Nuclear</b>": geoJsonLayers.nuclearLayer,
+            "<b style='color:#f5ff00'>Natural Gas</b>": geoJsonLayers.natGasLayer
+        }
+
+        L.control.layers(null, sourcesLabels, { collapsed:false }).addTo(map);
+
+                      
     </script>
     
 </body>
