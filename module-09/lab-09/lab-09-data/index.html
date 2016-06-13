@@ -15,7 +15,7 @@
         body {
             margin: 0;
             padding: 0;
-            background: #d6c4b4;
+            background: #ccc7a3;
             font-family: Lato, sans-serif;
             color: #0D0000;
         }
@@ -57,7 +57,7 @@
 
     <footer>
         <p>Map authored by Bryan J. Haviland</p>
-        <p>Additional information about the data and map goes here.</p>
+        <p>Source Data: U.S. Energy Information Administration - http://www.eia.gov/electricity/data/eia923/</p>
     </footer>
 
     <script src="power-plants.js"></script>
@@ -106,10 +106,11 @@
         
               
         map.on('click', function(e) {
-            for(var layer in layerInfo) {            
-                geoJsonLayers[layer].eachLayer(function(layer) {
+            for(var lyr in layerInfo) {
+                
+                geoJsonLayers[lyr].eachLayer(function(layer) {
+                    
                     var distance = e.latlng.distanceTo(layer.getLatLng())/1000;
-
                     if(distance > 500) {
                         layer.setStyle({
                             stroke: false,
@@ -119,9 +120,13 @@
                         layer.setStyle({
                             stroke: true,
                             fill: true  
-                        });  
-                        var content = "<b>"layer.feature.properties.plant_name+"</b><br>"+layer.feature.properties.fuel_source + "<br>";
-                            content += "<b>"+distance.toLocaleString()+"</b>"
+                        });
+                        
+                        var content = "<b>"+ layer.feature.properties.plant_name +"</b>" +"<br>"+
+                            layerInfo[lyr].source +" "+ layer.feature.properties.fuel_source[layerInfo[lyr].source].toLocaleString() +"MW<br>";
+                        
+                        content += "<b>"+distance.toLocaleString()+"</b>km from click point."
+                        
                         layer.bindPopup(content);
                     } 
                 });
