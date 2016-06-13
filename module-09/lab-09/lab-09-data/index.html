@@ -68,6 +68,14 @@
           zoom: 4,
       });
         
+        var radiusCircle = L.circle([0,-180], 500000, {
+            fillColor: "white",
+            fillOpacity: .1,
+            color: "yellow",
+            opacity: .2,
+            stroke: false,
+            weight: 2,
+        }).addTo(map);
              
         var commonStyles = {
                 weight: 1,
@@ -106,6 +114,7 @@
         
               
         map.on('click', function(e) {
+            radiusCircle.setLatLng(e.latlng);
             for(var lyr in layerInfo) {
                 
                 geoJsonLayers[lyr].eachLayer(function(layer) {
