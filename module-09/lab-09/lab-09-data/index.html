@@ -135,7 +135,7 @@
             
             var statsContent = "";
             for (stat in stats){
-                statsContent += ": "+ stats[stat].toLocaleString() +"MW <br>"
+                statsContent += stat +": "+ stats[stat].toLocaleString() +"MW <br>"
             }
             radiusCircle.bindPopup(statsContent).openPopup();
             
