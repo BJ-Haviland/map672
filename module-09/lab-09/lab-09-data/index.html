@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>Lab 09 Template</title>
+    <title>U.S. Energy Variety</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
@@ -112,9 +112,33 @@
             }).addTo(map);        
             }
         
+        var allPlants = L.geoJson(plants);
               
         map.on('click', function(e) {
+            
+            var stats = {};
+            allPlants.eachLayer(function(layer){
+                var distance = e.latlng.distanceTo(layer.getLatLng())/1000;
+                if (distance <=500){
+                    for (var source in layer.feature.properties.fuel_source){
+                        if (stats[source]){
+                            stats[source] += layer.feature.properties.fuel_source[source];
+                        } else{
+                            stats[source] = layer.feature.properties.fuel_source[source];
+                        }
+                    }
+                }
+            })
+            
+                        
             radiusCircle.setLatLng(e.latlng);
+            
+            var statsContent = "";
+            for (stat in stats){
+                statsContent += ": "+ stats[stat].toLocaleString() +"MW <br>"
+            }
+            radiusCircle.bindPopup(statsContent).openPopup();
+            
             for(var lyr in layerInfo) {
                 
                 geoJsonLayers[lyr].eachLayer(function(layer) {
